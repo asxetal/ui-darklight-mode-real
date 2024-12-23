@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f7f7f7;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(1, 1, 1, 0.2);
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+.menu p {
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+}
+
+.icon-group {
+  display: flex;
+  gap: 10px;
+}
+
+.menu svg {
+  width: 24px;
+  height: 24px;
+  color: #555;
+  cursor: pointer;
+}
+
+.content {
+  width: 100%;
+  height: calc(100% - 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle {
+  width: 150px;
+  height: 150px;
+  background-color: #ce4242;
+  border-radius: 50%;
+  position: relative;
+  transition: background-color 0.5s ease, transform 0.4s ease;
+}
+
+.circle::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: transparent;
+  border-radius: 50%;
+  transform: none;
+  transition: transform 0.4s ease;
+}
+
+/* Chế độ sáng */
+#light:checked ~ .app .content .circle {
+  background: linear-gradient(45deg, #FF6200, #FD7F2C);
+  transform: 0;
+  transition: all .5s ease;
+}
+
+#light:checked ~ .app .content .circle::before {
+  background-color: #f7f7f7;
+  width: 50px;
+  height: 50px;
+  transform: translate(120px, -10px) scale(.5);
+  transition: all .5s ease;
+}
+
+#light:checked ~ .app .light-or-dark .light {
+  color: #f9d71c;
+}
+
+#light:checked ~ .app .light-or-dark .dark {
+  color: #333;
+}
+#light:checked .app{
+  background-color: #fff;
+  transition: all .5s ease;
+}
+
+/* Chế độ tối */
+#dark:checked ~ .app .content .circle { 
+  background: linear-gradient(45deg, #242124, #363636);
+} 
+#dark:checked ~ .app .content .circle::before { 
+  background-color: #5a5858;
+  transform: translate(35%, -10%);
+} 
+#dark:checked ~ .app .light-or-dark .dark { 
+  color: #000;
+}
+#dark:checked ~ .app .light-or-dark .light { 
+  color: #aaa; 
+}
+#dark:checked + .app{
+  background-color: #585858;
+  transition: all .5s ease;
+}
+#dark:checked ~ .app .menu {
+  background-color: #333;
+  transition: all .5s ease;
+}
+#dark:checked ~ .app .menu p{
+  color: #fff;
+  transition: all .5s ease;
+}
+#dark:checked ~ .app .menu svg{
+  color: #fff;
+  transition: all .5s ease;
+}
+
+/* Giao diện Light/Dark */
+.light-or-dark {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.light,
+.dark {
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
